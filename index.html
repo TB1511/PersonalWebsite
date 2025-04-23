@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarek Bali</title>
+    <link rel="icon" href="pictures/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <div class="background1">
+        <div class="content">
+            <div class="main">
+                <div class="text">
+                    <h1 id="name"></h1>
+                    <div id="mainText" class="row">
+                        <p id="job"></p>
+                        <p class="B" > - </p>
+                        <p id="hoechsterAbschluss"></p>
+                    </div>
+                    <p id="standort"></p>
+                    <p id="mail"></p>
+                </div>
+                <div class="img">
+                    <img id="picture" src="" alt="Profilbild">
+                </div>
+            </div>
+            <div class="nav">
+                <button onclick="scrollToSection('about')">About Me</button>
+                <button onclick="scrollToSection('projectsContainer')">Projects</button>
+                <button onclick="scrollToSection('work')">Work experience</button>
+                <button onclick="scrollToSection('educationContainer')">Education</button>
+            </div>            
+        </div>
+    </div>
+    <div class="background2">
+        <div class="content" id="about">
+            <h1>About Me</h1>
+            <p id="aboutText"></p>
+            <p id="labelSkills"><strong>Skills:</strong></p>
+            <ul id="skills"></ul>
+            <p id="labelSprachen"><strong>Sprachen:</strong></p>
+            <ul id="sprachenListe"></ul>
+        </div>
+    </div>
+    <div class="background1">
+        <div class="content" id="projectsContainer">
+            <h1>Projects</h1>
+            <div id="projects"></div>
+        </div>
+    </div>
+    <div class="background2">
+        <div class="content" id="work">
+            <h1>Work experience</h1>
+            <div id="berufserfahrung"></div>
+        </div>
+    </div>
+    <div class="background1">
+        <div class="content" id="educationContainer">
+            <h1>Education</h1>
+            <div id="education"></div>
+        </div>
+    </div>
+    <div id="popup" class="popup hidden">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <div id="popup-body"></div>
+        </div>
+    </div>
+    <div id="jobPopup" class="popup hidden">
+        <div class="popup-content">
+            <span class="close" onclick="closeJobPopup()">&times;</span>
+            <h2 id="popupJobTitle"></h2>
+            <p id="popupJobDescription"></p>
+        </div>
+    </div>
+
+    <script>
+        const personalData = {
+            Name: "Tarek Bali",
+            Job: "Dualer Student",
+            HoechsterAbschluss: "B. Sc Wirtschaftsinformatik",
+            Standort: "Köln",
+            Mail: "tarekbali29@gmail.com",
+            Picture: "pictures/bild.jpg",
+            InfoText: "👋 Hallo! Ich bin dualer Student der Wirtschaftsinformatik im 6. Semester bei der Deutschen Telekom – mit großer Begeisterung für Technologie, Innovation und kontinuierliche Weiterentwicklung. In meinem Studium verbinde ich praxisnahe Erfahrung mit fundiertem theoretischem Wissen und entwickle so nicht nur meine fachlichen Fähigkeiten stetig weiter, sondern wachse auch persönlich mit jeder neuen Herausforderung. Besonders wichtig ist es mir, über den Tellerrand hinauszuschauen und dabei neue Perspektiven sowie Erfahrungen zu sammeln. Was mich auszeichnet? Ich bin ein echter Teamplayer, kommunikationsstark und immer offen für konstruktiven Austausch. Ob im Projektteam oder im direkten Kundenkontakt – ich schätze ein gutes Miteinander und bringe mich mit Motivation, Verantwortungsbewusstsein und einer lösungsorientierten Denkweise ein. Ich freue mich darauf, die digitale Zukunft aktiv mitzugestalten – und dabei jeden Tag dazuzulernen.",
+            Services: [],
+            Sprachen: [
+                "Deutsch - Muttersprache",
+                "Englisch - fließend",
+                "Bosnisch - fließend",
+                "Spanisch - Grundkenntnisse"
+            ],
+            SocialMedia: [""],
+            Skills: ["React", "HTML", "CSS", "JavaScript", "Angular", "Python", "Django", "Java", "Git", "Scrum"],
+            Projects: [
+                { Titel: "Automatisierte Schaltanweisung",
+                  Beschreibung: "Im Rahmen meines dualen Studiums habe ich ein Frontend-Tool entwickelt, das die Erstellung von Schaltanweisungen automatisiert. Die Anwendung bietet eine benutzerfreundliche Oberfläche, über die Anwender mit wenigen Klicks eine individuelle Schaltanweisung generieren können – schnell, effizient und fehlerreduziert. Neben der technischen Umsetzung konnte ich in diesem Projekt auch erste wertvolle Erfahrungen im Projektmanagement sammeln. Besonders deutlich wurde mir dabei, wie entscheidend eine klare und regelmäßige Kommunikation mit Stakeholdern für den Projekterfolg ist. Die Abstimmung mit verschiedenen Beteiligten hat mir gezeigt, wie wichtig es ist, Anforderungen frühzeitig zu verstehen, Feedback einzuholen und gemeinsam Lösungen zu entwickeln.",
+                  Technologien: ["React", "Scale", "FastAPI", "GitLab"],
+                  Link: "",
+                },
+                { Titel: "Automatisiertes Power Bi Dashboard",
+                  Beschreibung: "In diesem Projekt habe ich ein automatisiertes Reporting-Dashboard mit Power BI, Power Automate und Python entwickelt. Ziel war es, relevante Datenquellen zu verknüpfen, Datenflüsse effizient zu automatisieren und zentrale KPIs übersichtlich darzustellen – alles in einem dynamischen, visuell ansprechenden Dashboard. Dank der Kombination aus Automatisierung und Datenvisualisierung konnte nicht nur der manuelle Aufwand reduziert, sondern auch die Entscheidungsgrundlage für Stakeholder deutlich verbessert werden. Durch die Integration von Python-Skripten habe ich zusätzlich komplexe Datenberechnungen und -transformationen realisieren können – ein großer Mehrwert für die Aussagekraft der Analyse. Dieses Projekt hat mein Verständnis für Data Analytics, Prozessautomatisierung und Business Intelligence deutlich vertieft und mir gezeigt, wie wichtig es ist, Technik mit echten Business-Fragestellungen zu verbinden.",
+                  Technologien: ["Power BI","Power Automate","Python"],
+                  Link: "",
+                 },
+                { Titel: "Pastime" ,
+                  Beschreibung: "Mit Pastime habe ich eine webbasierte Anwendung entwickelt, die Nutzer:innen dabei unterstützt, ihren Alltag und ihre Projekte effizient zu organisieren. Die App bietet Funktionen zur Tages-, Wochen- und Monatsplanung sowie zur Projektverwaltung – alles in einem klar strukturierten Interface. Technisch basiert die Anwendung auf HTML, CSS, JavaScript sowie dem Webframework Django. Durch das Zusammenspiel von Frontend und Backend entstand eine vollständige Fullstack-Lösung, bei der ich sowohl meine Fähigkeiten im Webdesign als auch in der Backend-Entwicklung weiter ausbauen konnte. Das Projekt hat mir nicht nur technisches Know-how vermittelt, sondern auch gezeigt, wie wichtig eine gute User Experience und durchdachte Funktionalität für den langfristigen Nutzen einer Anwendung sind.",
+                  Technologien: ["HTML","CSS","JavaScript","Django","Git"],
+                  Link: "",
+                },
+                { Titel: "Webseite für ein Kosmetik-Studio",
+                  Beschreibung: "In diesem Projekt habe ich eine moderne, responsive Website für ein Kosmetikstudio erstellt – mit Fokus auf ansprechendem Design, Nutzerfreundlichkeit und klarer Struktur. Die Umsetzung erfolgte mit HTML, CSS, JavaScript und Django, wodurch sowohl eine schöne Außendarstellung als auch ein solides Backend zur einfachen Pflege der Inhalte ermöglicht wurde. Ziel war es, die Dienstleistungen, Öffnungszeiten und Kontaktmöglichkeiten professionell zu präsentieren und gleichzeitig ein elegantes Look & Feel zu schaffen, das zur Marke passt. Dieses Projekt hat mir gezeigt, wie wichtig es ist, technische Umsetzung und Designverständnis in Einklang zu bringen – und dabei auf die individuellen Wünsche der Kundin einzugehen.",
+                  Technologien: ["HTML","CSS","JavaScript","Django","Git"],
+                  Link: "",
+                 },
+                { Titel: "Webseite für eine Eisdiele",
+                  Beschreibung: "Für eine lokale Eisdiele habe ich eine schlanke, mobile-optimierte Website entwickelt, die sich besonders an Smartphone-Nutzer:innen richtet. Die Seite wurde ausschließlich mit HTML, CSS und JavaScript umgesetzt – bewusst ohne Backend, um eine schnelle Ladezeit und einfache Wartung zu gewährleisten. Im Fokus standen ein modernes, responsives Design, einfache Navigation und die ansprechende Präsentation von Sorten, Öffnungszeiten und Standortinformationen. Das Projekt hat mein Gespür für Mobile First Design geschärft und mir gezeigt, wie wichtig es ist, Inhalte auf das Wesentliche zu reduzieren – ohne dabei auf Stil oder Funktionalität zu verzichten.",
+                  Technologien: ["HTML","CSS","JavaScript","Git"],
+                  Link: "https://tb1511.github.io/LaCremaNostra/",
+                 },
+            ],
+            Berufserfahrung: [
+                {
+                    Firma: "Deutsche Telekom Technik",
+                    Rolle: "Incident Management",
+                    Zeitraum: "Okt. 2022 - Dez. 2023",
+                    Beschreibung: "Zu meinen Aufgaben gehörten die Aufnahme von Entstöraufträgen sowie die anschließende Fehleranalyse und die Auftragsvergabe an Generalunternehmen. Im Rahmen der kontinuierlichen Prozessoptimierung war ich zudem an der Automatisierung zentraler Arbeitsabläufe beteiligt. Dazu zählten unter anderem die automatisierte Erstellung von Anfragen an Generalunternehmen sowie die strukturierte Ablage und Speicherung aller anfallenden Dokumente – beides mit dem Ziel, Effizienz und Transparenz im operativen Ablauf nachhaltig zu steigern."
+                },
+                {
+                    Firma: "Deutsche Telekom Technik",
+                    Rolle: "Digital Unit",
+                    Zeitraum: "Dez. 2023 - Heute",
+                    Beschreibung: "Im Projekt „Automatisierte Schaltanweisungen“ habe ich die Rolle des Projektleiters übernommen und war dabei sowohl für die Anforderungsanalyse als auch für die Kommunikation mit den Stakeholdern verantwortlich. Ziel war die Entwicklung einer Webanwendung für Außendiensttechniker, die die Erstellung von Schaltanweisungen automatisiert und deutlich vereinfacht. Parallel dazu habe ich ein eigenständiges Dashboard entwickelt, das relevante Nutzungsdaten und Kennzahlen rund um eine Anwendung visualisiert. Dieses Tool unterstützt das Team bei der Auswertung und Weiterentwicklung, indem es wichtige Einblicke auf einen Blick verfügbar macht. Zusätzlich war ich in einer unterstützenden Rolle als Product Owner an der Weiterentwicklung der Anwendung „EasyS“ beteiligt. Dabei gehörten das Erstellen von User Stories sowie die aktive Teilnahme an Scrum-Aktivitäten wie Sprint Plannings, Reviews und Retrospektiven zu meinen Aufgaben."
+                },
+            ],
+            Schulbildung: [
+                {
+                    Titel: "B. Sc Wirtschaftsinformatik @ FOM Hochschule für Oekonomie & Management",
+                    Zeitraum: "Okt. 2022 - Dez. 2025",
+                    Beschreibung: "Bisheriger Notenschnitt: 1.8",
+                },
+                {
+                    Titel: "Allgemeine Hochschulreife",
+                    Zeitraum: "2022",
+                    Beschreibung: "Abschlussnote: 1.9",
+                },
+            ]
+        };
+    
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("name").innerText = personalData.Name;
+            document.getElementById("job").innerText = personalData.Job;
+            document.getElementById("hoechsterAbschluss").innerText = personalData.HoechsterAbschluss;
+            document.getElementById("standort").innerText = personalData.Standort;
+            document.getElementById("mail").innerText = personalData.Mail;
+            document.getElementById("picture").src = personalData.Picture;
+            document.getElementById("aboutText").innerText = personalData.InfoText;
+        
+            // Skills
+            const SkillsListe = document.getElementById("skills");
+            personalData.Skills.forEach(skill => {
+            const li = document.createElement("li");
+            li.textContent = skill;
+            SkillsListe.appendChild(li);
+            });
+
+            // Sprachen
+            const sprachenListe = document.getElementById("sprachenListe");
+            personalData.Sprachen.forEach(sprache => {
+            const li = document.createElement("li");
+            li.textContent = sprache;
+            sprachenListe.appendChild(li);
+            });
+        
+            // Berufserfahrung
+            document.getElementById("berufserfahrung").innerHTML = personalData.Berufserfahrung
+            .slice() // Kopie erstellen, damit das Original erhalten bleibt
+            .reverse()
+            .map(exp => `
+                <div class="job" onclick='openJobPopup(${JSON.stringify(exp).replace(/"/g, '&quot;')})'>
+                    <div class="row">
+                        <p class="elementTitel"><strong>${exp.Rolle} @ ${exp.Firma}</strong></p>
+                        <p class="elementTime"><strong>${exp.Zeitraum}</strong></p>  
+                    </div>
+                    <p>${shortenText(exp.Beschreibung)}</p>
+                </div>
+            `).join("");
+
+            // Schulbildung
+            document.getElementById("education").innerHTML = personalData.Schulbildung.map(exp => `
+            <div class="school">
+                <div class="row">
+                    <p class="elementTitel"><strong>${exp.Titel}</strong></p>
+                    <p class="elementTime"><strong>${exp.Zeitraum}</strong></p>
+                </div>
+                <p>${exp.Beschreibung}</p>
+            </div>
+            `).join("");
+        
+            // Projekte mit allen Details anzeigen
+            document.getElementById("projects").innerHTML = personalData.Projects.map(projekt => `
+            <div class="project" onclick="openPopup(${JSON.stringify(projekt).replace(/"/g, '&quot;')})">
+                <p><strong>${projekt.Titel}</strong></p>
+                <p class="A">${shortenText(projekt.Beschreibung)}</p>
+                <p><strong>Technologien:</strong></p>
+                <ul>
+                    ${projekt.Technologien.map(tech => `<li>${tech}</li>`).join("")}
+                </ul>
+            </div>
+            `).join("");
+        });
+
+        function scrollToSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function shortenText(text, wordCount = 20) {
+            const words = text.split(" ");
+            return words.length > wordCount
+                ? words.slice(0, wordCount).join(" ") + "..."
+                : text;
+            }
+
+        function openPopup(projekt) {
+            const popup = document.getElementById("popup");
+            const popupBody = document.getElementById("popup-body");
+
+            popupBody.innerHTML = `
+                <h2>${projekt.Titel}</h2>
+                <p>
+                    ${projekt.Link 
+                    ? `<a href="${projekt.Link}" target="_blank">Zum Projekt</a>` 
+                    : "Link folgt"}
+                </p>
+                <p class="A">${projekt.Beschreibung}</p>
+                <p><strong>Technologien:</strong></p>
+                <ul>
+                ${projekt.Technologien.map(tech => `<li>${tech}</li>`).join("")}
+                </ul>
+            `;
+
+            popup.classList.remove("hidden");
+        }
+
+        function closePopup() {
+            document.getElementById("popup").classList.add("hidden");
+        }
+
+        function openJobPopup(job) {
+            document.getElementById("popupJobTitle").innerText = `${job.Rolle} @ ${job.Firma}`;
+            document.getElementById("popupJobDescription").innerText = job.Beschreibung;
+            document.getElementById("jobPopup").classList.remove("hidden");
+        }
+
+        function closeJobPopup() {
+            document.getElementById("jobPopup").classList.add("hidden");
+        }
+
+    </script>
+    
+</body>
+</html>
